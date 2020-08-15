@@ -1,6 +1,26 @@
 import React from 'react';
 
 export default function Card4 (props) {
+	const access = Boolean(props.data)
+
+	const { onSelect, data } = props
+
+  // Шаблон элемента списка.
+	const Item = (props) => (
+		<li className="list-group-item" onClick={() => onSelect(props.value)}>
+			<div className="form-check">
+				<input
+					checked={data === props.value}
+					className="form-check-input" 
+					type="radio" 
+					name="question1" 
+					value="option1" 
+				/>
+				<label className="form-check-label">{props.value}</label>
+			</div>
+		</li>
+	)
+
 	return (
 		<div className="card main-card border border-secondary">
 			<div className="card-header">
@@ -8,32 +28,16 @@ export default function Card4 (props) {
 			</div>
 			<div className="card-body">
 				<img src="assets/code.jpg" style={{display: "block", margin: "0 auto"}} alt="" />
+
 				<ul className="list-group list-group-flush">
-					<li className="list-group-item">
-						<div className="form-check">
-							<input className="form-check-input" type="radio" name="quastion1" value="option1" defaultChecked />
-							<label className="form-check-label">Ничего не выведет</label>
-						</div>
-					</li>
-					<li className="list-group-item">
-						<div className="form-check">
-							<input className="form-check-input" type="radio" name="quastion1" value="option1" />
-							<label className="form-check-label">Будет ошибка синтаксиса</label>
-						</div>
-					</li>
-					<li className="list-group-item">
-						<div className="form-check">
-							<input className="form-check-input" type="radio" name="quastion1" value="option1" />
-							<label className="form-check-label">Hello, world!</label>
-						</div>
-					</li>
-					<li className="list-group-item">
-						<div className="form-check">
-							<input className="form-check-input" type="radio" name="quastion1" value="option1" />
-							<label className="form-check-label">HELLO, WORLD!</label>
-						</div>
-					</li>
+
+						{/* Элементы списка. */}
+					<Item value="Ничего не выведет" />
+					<Item value="Будет ошибка синтаксиса" />
+					<Item value="Hello, world!" />
+					<Item value="HELLO, WORLD!" />
 				</ul>
+
 			</div>
 			<div className="card-footer d-flex align-items-center">
 				<div className="flex-grow-1">
@@ -49,8 +53,15 @@ export default function Card4 (props) {
 					</div>
 				</div>
 				<div className="btn-group">
-					<button className="btn btn-danger float-right">Назад</button>
-					<button className="btn btn-success float-right">Далее</button>
+					<button 
+						className="btn btn-danger float-right"
+						onClick={props.toPrev}
+					>Назад</button>
+					<button 
+						className="btn btn-success float-right"
+						onClick={props.toNext}
+						disabled={!access}
+					>Далее</button>
 				</div>
 			</div>
 		</div>

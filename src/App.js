@@ -5,7 +5,6 @@ import Card3 from "./Card3";
 import Card4 from "./Card4";
 import Card5 from "./Card5";
 import Card6 from "./Card6";
-import { act } from "react-dom/test-utils";
 
 function App() {
   const [state, setState] = useState({
@@ -28,7 +27,7 @@ function App() {
     return newArray;
   }
 
-  const [activeCard, setActiveCard] = useState(4);
+  const [activeCard, setActiveCard] = useState(1);
 
   const toNext = () => setActiveCard(activeCard + 1);
   const toPrev = () => setActiveCard(activeCard - 1);
@@ -55,6 +54,24 @@ function App() {
         onSelect={(v) =>
           setState({ ...state, card3: addToArray(state.card3, v) })
         }
+      />
+    );
+  } else if (activeCard === 4) {
+    card = (
+      <Card4
+        toNext={toNext}
+        toPrev={toPrev}
+        data={state.card4}
+        onSelect={(v) => setState({ ...state, card4: v })}
+      />
+    );
+  } else if (activeCard === 5) {
+    card = (
+      <Card5
+        toNext={toNext}
+        toPrev={toPrev}
+        data={state.card5}
+        onSelect={(v) => setState({ ...state, card5: v })}
       />
     );
   }

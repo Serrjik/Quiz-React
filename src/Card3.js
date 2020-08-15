@@ -6,8 +6,15 @@ export default function Card3(props) {
 
   const { onSelect, data } = props;
 
-  // console.log(props)
-  // console.log(data);
+  const values = [
+    { image: "sublime.png", value: "Sublime Text" },
+    { image: "notepad.png", value: "Notepad" },
+    { image: "vscode.png", value: "VSCode" },
+    { image: "brackets.png", value: "Brackets" },
+    { image: "vim.png", value: "VIM" },
+    { image: "bloknot.png", value: "Блокнот" },
+    { image: "atom.png", value: "Atom" }
+  ];
 
   // Шаблон карточки.
   const Item = (props) => (
@@ -47,13 +54,9 @@ export default function Card3(props) {
       </div>
       <div className="card-body d-flex flex-wrap justify-content-center">
         {/* Карточки. */}
-        <Item value="Sublime Text" image="assets/sublime.png" />
-        <Item value="Notepad++" image="assets/notepad.png" />
-        <Item value="VSCode" image="assets/vscode.png" />
-        <Item value="Brackets" image="assets/brackets.png" />
-        <Item value="VIM" image="assets/vim.png" />
-        <Item value="Блокнот" image="assets/bloknot.png" />
-        <Item value="Atom" image="assets/atom.png" />
+        {values.map(({ value, image }) => (
+          <Item key={value} value={value} image={`assets/${image}`} />
+        ))}
       </div>
 
       <div className="card-footer d-flex align-items-center">
