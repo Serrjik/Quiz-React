@@ -10,12 +10,25 @@ import { act } from "react-dom/test-utils";
 function App() {
   const [state, setState] = useState({
     card2: null,
-    card3: null,
+    card3: [],
     card4: null,
     card5: null
   });
 
-  const [activeCard, setActiveCard] = useState(2);
+  function addToArray(array, element) {
+    const newArray = array.slice();
+
+    if (newArray.includes(element)) {
+      newArray.splice(newArray.indexOf(element), 1);
+      return newArray;
+    }
+
+    newArray.push(element);
+    // console.log(element);
+    return newArray;
+  }
+
+  const [activeCard, setActiveCard] = useState(4);
 
   const toNext = () => setActiveCard(activeCard + 1);
   const toPrev = () => setActiveCard(activeCard - 1);
@@ -31,6 +44,17 @@ function App() {
         toPrev={toPrev}
         data={state.card2}
         onSelect={(v) => setState({ ...state, card2: v })}
+      />
+    );
+  } else if (activeCard === 3) {
+    card = (
+      <Card3
+        toNext={toNext}
+        toPrev={toPrev}
+        data={state.card3}
+        onSelect={(v) =>
+          setState({ ...state, card3: addToArray(state.card3, v) })
+        }
       />
     );
   }
