@@ -1,9 +1,11 @@
 import React from "react";
 
 export default function Card5(props) {
-  const access = Boolean(props.data);
+  const access = Boolean(props.data.name) 
+  && Boolean(props.data.email) 
+  && Boolean(props.data.agreeToProcessingPersonalData);
 
-  const { onSelect, data } = props;
+  const { onSelect, inputHandler, data } = props;
 
   return (
     <div className="card main-card border border-secondary">
@@ -16,16 +18,37 @@ export default function Card5(props) {
       <div className="card-body">
         <div className="form-group">
           <label htmlFor="formGroupExampleInput">Имя:</label>
-          <input type="text" className="form-control" placeholder="Владимир" />
+          <input
+            onInput={event => inputHandler(event)}
+            type="text" 
+            className="form-control" 
+            placeholder="Владимир" 
+            name="name" 
+          />
         </div>
+
         <div className="form-group">
           <label htmlFor="formGroupExampleInput2">
             Адрес электронной почты:
           </label>
-          <input type="text" className="form-control" placeholder="@mail.ru" />
-        </div>
-        <div className="form-check">
           <input
+            onInput={event => inputHandler(event)}
+            type="email"
+            className="form-control" 
+            placeholder="@mail.ru" 
+            name="email" 
+          />
+        </div>
+
+				<div 
+					className="form-check"
+					onClick={e => {
+						// console.log('props.data', props.data)
+						onSelect();
+					}}
+				>
+          <input
+            checked={data.agreeToProcessingPersonalData}
             className="form-check-input"
             type="checkbox"
             name="exampleRadios"

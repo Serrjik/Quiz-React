@@ -11,7 +11,11 @@ function App() {
     card2: null,
     card3: [],
     card4: null,
-    card5: null
+    card5: {
+      name: null,
+      email: null,
+      agreeToProcessingPersonalData: false
+    }
   });
 
   function addToArray(array, element) {
@@ -27,7 +31,7 @@ function App() {
     return newArray;
   }
 
-  const [activeCard, setActiveCard] = useState(1);
+  const [activeCard, setActiveCard] = useState(5);
 
   const toNext = () => setActiveCard(activeCard + 1);
   const toPrev = () => setActiveCard(activeCard - 1);
@@ -71,7 +75,18 @@ function App() {
         toNext={toNext}
         toPrev={toPrev}
         data={state.card5}
-        onSelect={(v) => setState({ ...state, card5: v })}
+        onSelect={() => {
+          state.card5.agreeToProcessingPersonalData = !state.card5
+            .agreeToProcessingPersonalData;
+          setState({ ...state, card5: state.card5 });
+        }}
+        inputHandler={event => {
+          state.card5[event.target.name] = event.target.value.trim()
+          setState({ ...state, card5: state.card5 });
+
+          console.log('state.card5', state.card5);
+          // console.log('event.target.name', event.target.value);
+        }}
       />
     );
   }

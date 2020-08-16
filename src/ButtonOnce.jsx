@@ -1,3 +1,5 @@
+// Образец кнопки, на которой обработчик клика сработает только 1 раз и удалится.
+
 import React, { useState } from "react";
 
 export default function Button(props) {
