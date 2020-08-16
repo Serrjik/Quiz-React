@@ -47,7 +47,9 @@ export default function Card(props) {
   return (
     <div className="card main-card border border-secondary">
       {header}
-      <div className="card-body">{props.children}</div>
+      <div className="card-body">
+        {props.children}
+      </div>
       {footer}
     </div>
   );

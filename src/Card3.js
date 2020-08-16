@@ -1,10 +1,10 @@
 import React from "react";
+import Card from "./Card";
 
 export default function Card3(props) {
-  const access = Boolean(props.data.length !== 0);
-  // console.log('access:', access);
-
   const { onSelect, data } = props;
+
+  const access = Boolean(props.data.length !== 0);
 
   const values = [
     { image: "sublime.png", value: "Sublime Text" },
@@ -21,7 +21,6 @@ export default function Card3(props) {
     <div
       className="card-slectable d-flex flex-column justify-content-center"
       onClick={() => {
-        // console.log(props)
         onSelect(props.value);
       }}
     >
@@ -46,45 +45,19 @@ export default function Card3(props) {
   );
 
   return (
-    <div className="card main-card border border-secondary">
-      <div className="card-header">
-        <h5 className="card-title">
-          Каким редактором пользуются программисты?
-        </h5>
-      </div>
-      <div className="card-body d-flex flex-wrap justify-content-center">
+    <Card
+      title="Каким редактором пользуются программисты?"
+      percent={50}
+      access={access}
+      toNext={props.toNext}
+      toPrev={props.toPrev}
+    >
+      <div className="d-flex flex-wrap justify-content-center">
         {/* Карточки. */}
         {values.map(({ value, image }) => (
           <Item key={value} value={value} image={`assets/${image}`} />
         ))}
       </div>
-
-      <div className="card-footer d-flex align-items-center">
-        <div className="flex-grow-1">
-          <div className="progress">
-            <div
-              className="progress-bar progress-bar-striped progress-bar-animated"
-              role="progressbar"
-              aria-valuenow="75"
-              aria-valuemin="0"
-              aria-valuemax="100"
-              style={{ width: "50%" }}
-            ></div>
-          </div>
-        </div>
-        <div className="btn-group">
-          <button className="btn btn-danger float-right" onClick={props.toPrev}>
-            Назад
-          </button>
-          <button
-            className="btn btn-success float-right"
-            onClick={props.toNext}
-            disabled={!access}
-          >
-            Далее
-          </button>
-        </div>
-      </div>
-    </div>
+    </Card>
   );
 }
