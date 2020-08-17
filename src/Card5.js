@@ -4,28 +4,29 @@ import Card from "./Card";
 export default function Card5(props) {
   const { onSelect, inputHandler, data } = props;
 
-  const access = Boolean(props.data.name) 
-  && Boolean(props.data.email) 
-  && Boolean(props.data.agreeToProcessingPersonalData);
+  const access = Boolean(data.name) 
+  && Boolean(data.email) 
+  && Boolean(data.agreeToProcessingPersonalData);
 
-  // const values = [
-  //   { type: "text", name: "text", label: "Имя:", placeholder: "Владимир" },
-  //   { type: "email", name: "email", label: "Адрес электронной почты:", placeholder: "@mail.ru" },
-  // ];
+  const values = [
+    { type: "text", name: "name", label: "Имя:", placeholder: "Владимир" },
+    { type: "email", name: "email", label: "Адрес электронной почты:", placeholder: "@mail.ru" }
+  ];
 
   // Шаблон группы формы.
-  // const Item = (props) => (
-  //   <div className="form-group">
-  //     <label htmlFor="formGroupExampleInput">{props.label}</label>
-  //     <input
-  //       onInput={event => inputHandler(event)}
-  //       type={props.type}
-  //       className="form-control" 
-  //       placeholder={props.placeholder}
-  //       name={props.name}
-  //     />
-  //   </div>
-  // );
+  const Item = (props) => (
+    <div className="form-group">
+      <label htmlFor="formGroupExampleInput">{props.label}</label>
+      <input
+        onChange={event => inputHandler(event)}
+        type={props.type}
+        className="form-control" 
+        placeholder={props.placeholder}
+        name={props.name}
+        value={data[props.name] || ''}
+      />
+    </div>
+  );
 
   return (
     <Card
@@ -36,18 +37,19 @@ export default function Card5(props) {
       toPrev={props.toPrev}
     >
       {/* Элементы формы (группы с текстовыми инпутами). */}
-      {/* {values.map(({ type, name, label, placeholder }) => (
+      {values.map(({ type, name, label, placeholder }) => (
         <Item key={name} name={name} type={type} label={label} placeholder={placeholder} />
-      ))} */}
+      ))}
 
-      <div className="form-group">
+      {/* <div className="form-group">
         <label htmlFor="formGroupExampleInput">Имя:</label>
         <input
-          onInput={event => inputHandler(event)}
+          onChange={event => inputHandler(event)}
           type="text" 
           className="form-control" 
           placeholder="Владимир" 
-          name="name" 
+          name="name"
+          value={data.name || ""}
         />
       </div>
 
@@ -61,8 +63,9 @@ export default function Card5(props) {
           className="form-control" 
           placeholder="@mail.ru" 
           name="email" 
+          value={data.email || ""}
         />
-      </div>
+      </div> */}
 
       <div 
         className="form-check"
