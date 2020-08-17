@@ -91,6 +91,10 @@ function App() {
     );
   }
 
+  else {
+    card = <Card6 toPrev={toPrev} />;
+  }
+
   return (
     <div className="quiz d-flex justify-content-center align-items-center">
       {card}
