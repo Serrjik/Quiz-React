@@ -29,7 +29,10 @@ export default function Card(props) {
           </div>
         </div>
         <div className="btn-group">
-          <button className="btn btn-danger float-right" onClick={props.toPrev}>
+          <button 
+            className="btn btn-danger float-right" 
+            onClick={props.toPrev}
+          >
             Назад
           </button>
           <button

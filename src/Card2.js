@@ -30,7 +30,7 @@ export default function Card2(props) {
   return (
     <Card
       title="Какой язык программирования используется на FrontEnd'е?"
-      percent={25}
+      percent={access ? 16.7 : 0}
       access={access}
       toNext={props.toNext}
       toPrev={props.toPrev}
