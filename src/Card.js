@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
+import Context from "./Context";
+
 export default function Card(props) {
+  const { toPrev, toNext } = useContext(Context);
+
   let header = null;
   let footer = null;
 
@@ -19,7 +23,12 @@ export default function Card(props) {
         <div className="flex-grow-1">
           <div className="progress">
             <div
-              className="progress-bar progress-bar-striped progress-bar-animated"
+              // className={"progress-bar progress-bar-striped progress-bar-animated"}
+              className={
+                props.percent === 100
+                  ? "progress-bar progress-bar-striped progress-bar-animated bg-success"
+                  : "progress-bar progress-bar-striped progress-bar-animated"
+              }
               role="progressbar"
               aria-valuenow="75"
               aria-valuemin="0"
@@ -29,15 +38,12 @@ export default function Card(props) {
           </div>
         </div>
         <div className="btn-group">
-          <button 
-            className="btn btn-danger float-right" 
-            onClick={props.toPrev}
-          >
+          <button className="btn btn-danger float-right" onClick={toPrev}>
             Назад
           </button>
           <button
             className="btn btn-success float-right"
-            onClick={props.toNext}
+            onClick={toNext}
             disabled={!props.access}
           >
             Далее
@@ -50,9 +56,7 @@ export default function Card(props) {
   return (
     <div className="card main-card border border-secondary">
       {header}
-      <div className="card-body">
-        {props.children}
-      </div>
+      <div className="card-body">{props.children}</div>
       {footer}
     </div>
   );

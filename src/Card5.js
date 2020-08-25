@@ -11,7 +11,6 @@ export default function Card5(props) {
   return (
     <Card
       title="Контактные данные для предложения на основе ваших ответов."
-      percent={100}
       access={access}
       toNext={() => {
         props.onSave({ name, email, agree });
@@ -21,13 +20,17 @@ export default function Card5(props) {
         props.onSave({ name, email, agree });
         props.toPrev();
       }}
-    >
+      percent={props.percent}
+      >
       {/* Элементы формы (группы с текстовыми инпутами). */}
       <div className="form-group">
         <label htmlFor="formGroupExampleInput">Имя:</label>
         <input
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={e => {
+            setName(e.target.value)
+            props.onSave({ name, email, agree });
+          }}
           type="text"
           className="form-control"
           placeholder="Владимир"
@@ -39,7 +42,10 @@ export default function Card5(props) {
         <label htmlFor="formGroupExampleInput2">Адрес электронной почты:</label>
         <input
           value={email}
-          onInput={(e) => setEmail(e.target.value)}
+          onChange={e => {
+            setEmail(e.target.value)
+            props.onSave({ name, email, agree });
+          }}
           type="email"
           className="form-control"
           placeholder="@mail.ru"
@@ -47,10 +53,13 @@ export default function Card5(props) {
         />
       </div>
 
-      <div className="form-check" onClick={() => setAgree(!agree)}>
+      <div className="form-check" onClick={() => {
+        setAgree(!agree)
+        props.onSave({ name, email, agree });
+      }}>
         <input
           checked={agree}
-          onClick={() => {}}
+          // onClick={() => {}}
           className="form-check-input"
           type="checkbox"
           name="exampleRadios"

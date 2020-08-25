@@ -25,7 +25,7 @@ export default function Card4 (props) {
 	return (
 		<Card
       title="Что выведет следующий код?"
-      percent={75}
+      percent={props.percent}
       access={access}
       toNext={props.toNext}
       toPrev={props.toPrev}

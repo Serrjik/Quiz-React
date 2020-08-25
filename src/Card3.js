@@ -47,7 +47,7 @@ export default function Card3(props) {
   return (
     <Card
       title="Каким редактором пользуются программисты?"
-      percent={50}
+      percent={props.percent}
       access={access}
       toNext={props.toNext}
       toPrev={props.toPrev}

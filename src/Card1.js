@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import Card from "./Card";
 
+import Context from "./Context";
+
 export default function Card1(props) {
+  const { toNext } = useContext(Context);
+
   return (
     <Card header={false} footer={false}>
       <div
@@ -22,7 +26,7 @@ export default function Card1(props) {
         <button
           className="btn btn-success btn-lg"
           style={{ display: "block", margin: "0 auto" }}
-          onClick={props.toNext}
+          onClick={toNext}
         >
           Начать
         </button>
