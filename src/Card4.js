@@ -16,6 +16,7 @@ export default function Card4 (props) {
 					type="radio" 
 					name="question1" 
 					value="option1" 
+          onChange={() => {}}
 				/>
 				<label className="form-check-label">{props.value}</label>
 			</div>
@@ -25,10 +26,7 @@ export default function Card4 (props) {
 	return (
 		<Card
       title="Что выведет следующий код?"
-      percent={props.percent}
       access={access}
-      toNext={props.toNext}
-      toPrev={props.toPrev}
     >
 			<img src="assets/code.jpg" style={{display: "block", margin: "0 auto"}} alt="" />
 

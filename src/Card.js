@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import Context from "./Context";
 
 export default function Card(props) {
-  const { toPrev, toNext } = useContext(Context);
+  const { toPrev, toNext, getProgress } = useContext(Context);
 
   let header = null;
   let footer = null;
@@ -18,22 +18,23 @@ export default function Card(props) {
   }
 
   if (props.footer) {
+    const percent = getProgress()
+
     footer = (
       <div className="card-footer d-flex align-items-center">
         <div className="flex-grow-1">
           <div className="progress">
             <div
-              // className={"progress-bar progress-bar-striped progress-bar-animated"}
               className={
-                props.percent === 100
+                percent === 100
                   ? "progress-bar progress-bar-striped progress-bar-animated bg-success"
                   : "progress-bar progress-bar-striped progress-bar-animated"
               }
               role="progressbar"
-              aria-valuenow="75"
+              aria-valuenow={percent}
               aria-valuemin="0"
               aria-valuemax="100"
-              style={{ width: `${props.percent}%` }}
+              style={{ width: `${percent}%` }}
             ></div>
           </div>
         </div>

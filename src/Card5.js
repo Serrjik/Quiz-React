@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Card from "./Card";
 
 export default function Card5(props) {
@@ -6,30 +6,24 @@ export default function Card5(props) {
   const [email, setEmail] = useState(props.data.email);
   const [agree, setAgree] = useState(props.data.agree);
 
+  useEffect(() => {
+    props.onSave({ name, email, agree });
+  }, [name, email, agree]);
+
   const access = Boolean(agree && name && email);
 
   return (
     <Card
       title="Контактные данные для предложения на основе ваших ответов."
       access={access}
-      toNext={() => {
-        props.onSave({ name, email, agree });
-        props.toNext();
-      }}
-      toPrev={() => {
-        props.onSave({ name, email, agree });
-        props.toPrev();
-      }}
-      percent={props.percent}
-      >
+    >
       {/* Элементы формы (группы с текстовыми инпутами). */}
       <div className="form-group">
         <label htmlFor="formGroupExampleInput">Имя:</label>
         <input
           value={name}
-          onChange={e => {
-            setName(e.target.value)
-            props.onSave({ name, email, agree });
+          onChange={(e) => {
+            setName(e.target.value);
           }}
           type="text"
           className="form-control"
@@ -42,9 +36,8 @@ export default function Card5(props) {
         <label htmlFor="formGroupExampleInput2">Адрес электронной почты:</label>
         <input
           value={email}
-          onChange={e => {
-            setEmail(e.target.value)
-            props.onSave({ name, email, agree });
+          onChange={(e) => {
+            setEmail(e.target.value);
           }}
           type="email"
           className="form-control"
@@ -53,16 +46,18 @@ export default function Card5(props) {
         />
       </div>
 
-      <div className="form-check" onClick={() => {
-        setAgree(!agree)
-        props.onSave({ name, email, agree });
-      }}>
+      <div
+        className="form-check"
+        onClick={() => {
+          setAgree(!agree);
+        }}
+      >
         <input
           checked={agree}
-          // onClick={() => {}}
           className="form-check-input"
           type="checkbox"
           name="exampleRadios"
+          onChange={() => {}}
         />
         <label className="form-check-label">
           Согласен/согласна на обработку моих персональных данных.

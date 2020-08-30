@@ -32,6 +32,7 @@ export default function Card3(props) {
           type="checkbox"
           value=""
           id="defaultCheck1"
+          onChange={() => {}}
         />
         <label
           className="form-check-label text-center"
@@ -47,10 +48,7 @@ export default function Card3(props) {
   return (
     <Card
       title="Каким редактором пользуются программисты?"
-      percent={props.percent}
       access={access}
-      toNext={props.toNext}
-      toPrev={props.toPrev}
     >
       <div className="d-flex flex-wrap justify-content-center">
         {/* Карточки. */}

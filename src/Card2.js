@@ -1,6 +1,5 @@
 import React from "react";
 import Card from "./Card";
-// import { updateProgress } from "./functions"
 
 export default function Card2(props) {
   const { onSelect, data } = props;
@@ -22,6 +21,7 @@ export default function Card2(props) {
           type="radio"
           name="question1"
           value="option1"
+          onChange={() => {}}
         />
         <label className="form-check-label">{props.value}</label>
       </div>
@@ -31,11 +31,7 @@ export default function Card2(props) {
   return (
     <Card
       title="Какой язык программирования используется на FrontEnd'е?"
-      // percent={access ? 16.7 : 0}
-      percent={props.percent}
       access={access}
-      toNext={props.toNext}
-      toPrev={props.toPrev}
     >
       <ul className="list-group list-group-flush">
         {values.map((value) => (
